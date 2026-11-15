@@ -61,10 +61,29 @@ public class Main {
 ### 🤔 Preguntas de Análisis
 
 * Carga Perezosa: ¿Cuándo se ejecuta el constructor de RealImage en el código original vs en el código con Proxy?
+
+    En el código original, el constructor de RealImage se ejecuta en el momento en que haces new RealImage(), bloqueando el programa. Con el Proxy, 
+    se ejecuta hasta que llamas a .display() por primera vez.
+
 * Transparencia: ¿El código cliente necesita saber si está trabajando con un Proxy o con el objeto real? ¿Por qué?
+
+El cliente no necesita saber si habla con el Proxy o con el objeto real. Esto se logra porque ambos implementan la misma interfaz (Image). 
+El cliente solo llama a display() y no le importa quién lo esté ejecutando por debajo.
+
 * Rendimiento: ¿Qué ventajas de rendimiento ofrece el patrón Proxy en este escenario?
+
+Ahorra memoria y tiempo de CPU. Si el usuario nunca llama a display(), la imagen jamás se carga, ahorrando recursos valiosos.
+
 * Control de Acceso: Además de la carga perezosa, ¿qué otros tipos de control podríamos implementar en el Proxy? (Ej: verificación de permisos, logging, cache)
+
+Un Proxy también sirve para verificar permisos (ej. que el usuario sea admin), guardar un historial (Logging) de quién ve qué imagen, o para proteger el servidor
+(Proxy Remoto).
+
 * Principio SOLID: ¿Qué principio SOLID se aplica aquí al permitir que el Proxy y el RealImage implementen la misma interfaz?
+
+Se aplica el Principio de Sustitución de Liskov (LSP) (los objetos de una superclase deben poder ser reemplazados por objetos de sus subclases sin alterar el funcionamiento)
+ y el Principio de Inversión de Dependencias (DIP) (depender de abstracciones como la interfaz Image, no de clases concretas). 
+ Al usar la interfaz, el sistema es flexible y desacoplado.
 
 ### 🧪 Pruebas a Realizar
 
