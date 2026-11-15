@@ -1,4 +1,4 @@
-package Proxy;
+package proxy;
 
 public class RealImage implements Image {
     private String filename;
